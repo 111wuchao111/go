@@ -1,0 +1,38 @@
+package main
+
+import "github.com/beego/i18n"
+import "fmt"
+
+const enusIni = `
+[base]
+say_hi = hello %s
+hello_world = hello world!
+`
+
+const zhcnIni = `
+[base]
+say_hi = 你好 %s
+hello_world = 你好世界！
+`
+
+func main() {
+	TestSetMessageData()
+}
+func TestSetMessageData() {
+	var err error
+	enusData := []byte(enusIni)
+	if err = i18n.SetMessageData("en-US", enusData); err != nil {
+		fmt.Println(err)
+	}
+
+	zhcnData := []byte(zhcnIni)
+	if err = i18n.SetMessageData("zh-CN", zhcnData); err != nil {
+		fmt.Println(err)
+	}
+
+	enVal := i18n.Tr("en-US", "base.say_hi", "someone")
+	fmt.Println(enVal)
+
+	zhVal := i18n.Tr("zh-CN", "base.hello_world")
+	fmt.Println(zhVal)
+}
