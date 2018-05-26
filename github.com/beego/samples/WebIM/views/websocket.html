@@ -12,6 +12,7 @@
         </div>
 		<div class="col-md-3 form-group">
 		<select id="onlineUserSelect">
+			<option value="-1">--发给所有人--</option>
 		</select>
 		</div>
 		<div class="col-md-2 form-group">
@@ -28,28 +29,39 @@
 </div>
 {{end}}
 <script type="text/javascript">
-$(document).ready(function () {  
-   $("#onlineUserSelect").click(function (){ 
+$(function(){
+    $('#onlineUserSelect').click(function(){
          $.ajax({
-
-               url ：'/user/get-online-users',  //后台处理程序
-
-               type:'get',    //数据发送方式
-
-               dataType:'json',  //接受数据格式
-
-               //data:params,  //要传递的数据
-
-               success:function(data) {  
-						alert(data)  
-				   },  
-				error : function() {   
-				     alert("异常！");  
-				   }  
-
-               });
-
-        });
-
+             type: "GET",
+             url: "/user/get-online-users",
+             //data: {username:$("#username").val(), content:$("#content").val()},
+             dataType: "json",
+             success: function(data){
+	              $.each(data, function (index, item) {  
+	                var id = data[index].ClientId; 
+	                var text = data[index].UserName; 
+					if (!isExistOption('onlineUserSelect',id)) {
+						$("#onlineUserSelect").append("<option value='"+id+"'>"+text+"</option>");
+					}
+	                  
+	              }); 
+             }
+         });
+    });
 });
+
+function isExistOption(id,value) {  
+    var isExist = false;  
+    var count = $('#'+id).find('option').length;  
+
+      for(var i=0;i<count;i++)     
+      {     
+         if($('#'+id).get(0).options[i].value == value)     
+             {     
+                   isExist = true;     
+                        break;     
+                  }     
+        }     
+        return isExist;  
+} 
 </script>

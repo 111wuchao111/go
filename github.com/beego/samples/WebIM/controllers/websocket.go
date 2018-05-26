@@ -92,12 +92,25 @@ func sendMsgWithWebSocket(event models.Event) {
 		beego.Error("errFail to marshal event:", err)
 		return
 	}
-	for k, v := range userMap.relationMap {
-		ws := v.Conn
+	if event.ClientId != "-1" && event.Type == models.EVENT_MESSAGE {
+		//beego.Info("map---:", userMap.relationMap, event.ClientId)
+		clientInfo := userMap.relationMap[event.ClientId]
+		//beego.Info(clientInfo)
+		ws := clientInfo.Conn
 		if ws != nil {
 			if ws.WriteMessage(websocket.TextMessage, data) != nil {
 				// User disconnected.
-				unsubscribe <- k
+				unsubscribe <- clientInfo.ClientId
+			}
+		}
+	} else {
+		for k, v := range userMap.relationMap {
+			ws := v.Conn
+			if ws != nil {
+				if ws.WriteMessage(websocket.TextMessage, data) != nil {
+					// User disconnected.
+					unsubscribe <- k
+				}
 			}
 		}
 	}

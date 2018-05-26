@@ -44,7 +44,8 @@ $(document).ready(function () {
     var postConecnt = function () {
         var uname = $('#uname').text();
         var content = $('#sendbox').val();
-		var clientId = $('#clientId').text();
+		var clientId = $('#onlineUserSelect').val();
+		//alert(clientId)
         socket.send(JSON.stringify({
 			content:content,
 			clientId:clientId
