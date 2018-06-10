@@ -34,7 +34,7 @@ header { position: fixed; top: 0; z-index: 99999 }
 .search_bar { position: relative; margin-top: 10px; width: 0%; min-width: 60px; height: 60px; float: right; overflow: hidden; -webkit-transition: width 0.3s; -moz-transition: width 0.3s; transition: width 0.3s; -webkit-backface-visibility: hidden; }
 .input { position: absolute; top: 15px; right: 0; border: none; outline: none; width: 98%; height: 30px; line-height: 30px; z-index: 10; font-size: 16px; color: #333; padding-left: 5px }
 .search_ico, .search_btn { width: 60px; height: 60px; display: block; position: absolute; right: 0; top: 0; padding: 0; margin: 0; line-height: 60px; cursor: pointer; }
-.search_ico { background: #000 url(../images/searchbg.png) no-repeat center; z-index: 90; }
+.search_ico { background: #000 url(/static/img/searchbg.png) no-repeat center; z-index: 90; }
 .search_open { width: 200px; }
 #show { position: absolute; padding: 20px }
 /*phone  nav */
@@ -59,7 +59,7 @@ header { position: fixed; top: 0; z-index: 99999 }
 .list_dd ul li { text-align: center; line-height: 36px; }
 .list_dd ul li a { color: #999 }
 /*cd-top*/
-.cd-top { display: inline-block; height: 40px; width: 40px; position: fixed; bottom: 40px; right: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);  overflow: hidden; text-indent: 100%; white-space: nowrap; background: rgba(0, 0, 0, 0.8) url(../images/top.png) no-repeat center ; visibility: hidden; opacity: 0; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; }
+.cd-top { display: inline-block; height: 40px; width: 40px; position: fixed; bottom: 40px; right: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);  overflow: hidden; text-indent: 100%; white-space: nowrap; background: rgba(0, 0, 0, 0.8) url(/static/img/top.png) no-repeat center ; visibility: hidden; opacity: 0; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; }
 .cd-top.cd-is-visible {  visibility: visible; opacity: 1; }
 /*footer*/
 footer { width: 100%; background: #333; color: #a5a4a4; text-align: center; padding: 20px 0; clear: both; }

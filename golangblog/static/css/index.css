@@ -35,11 +35,11 @@
 .bloginfo ul li { float: left; font-size: 12px; padding: 0 0 0 20px; margin: 0 15px 0 0; color: #748594; line-height: 1.5; display: inline-block; }
 .bloginfo ul li a { color: #748594; }
 .bloginfo ul li a:hover { color: #000 }
-.bloginfo .author { background: url(../images/auicon.jpg) no-repeat 0 0 }
-.bloginfo .lmname { background: url(../images/auicon.jpg) no-repeat top -23px left; }
-.bloginfo .timer { background: url(../images/auicon.jpg) no-repeat top -44px left; }
-.bloginfo .view { background: url(../images/auicon.jpg) no-repeat top -64px left; }
-.bloginfo .like { background: url(../images/auicon.jpg) no-repeat top -85px left; }
+.bloginfo .author { background: url(/static/img/auicon.jpg) no-repeat 0 0 }
+.bloginfo .lmname { background: url(/static/img/auicon.jpg) no-repeat top -23px left; }
+.bloginfo .timer { background: url(/static/img/auicon.jpg) no-repeat top -44px left; }
+.bloginfo .view { background: url(/static/img/auicon.jpg) no-repeat top -64px left; }
+.bloginfo .like { background: url(/static/img/auicon.jpg) no-repeat top -85px left; }
 /*bplist*/
 .bplist { width: 100%; overflow: hidden; display: block; margin-bottom: 20px }
 .bplist li { float: left; width: 32.8%; height: 174px; overflow: hidden; }
