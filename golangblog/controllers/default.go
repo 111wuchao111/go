@@ -6,10 +6,12 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
+//默认controller
 type MainController struct {
 	BaseController
 }
 
+//首页
 func (c *MainController) Get() {
 	var brands []models.Brand
 	var kerns []models.Article
@@ -28,4 +30,21 @@ func (c *MainController) Get() {
 	c.Data["Articles"] = articles
 	c.Data["Brand"] = brands
 	c.TplName = "index.html"
+}
+
+//时间轴
+func (c *MainController) Time() {
+	var articles []models.Article
+	o := orm.NewOrm()
+	o.QueryTable("article").OrderBy("-Time").Limit(10).All(&articles)
+	c.Data["Articles"] = articles
+	c.TplName = "time.html"
+}
+
+//关于我
+func (c *MainController) About() {
+	var user models.User
+	orm.NewOrm().QueryTable("user").Filter("id", 1).One(&user)
+	c.Data["User"] = user
+	c.TplName = "about.html"
 }
