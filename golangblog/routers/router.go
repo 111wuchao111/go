@@ -11,4 +11,5 @@ func init() {
 	beego.Router("/time", &controllers.MainController{}, "get:Time")
 	beego.Router("/about", &controllers.MainController{}, "get:About")
 	beego.Router("/detail/:id", &controllers.MainController{}, "get:Detail")
+	beego.Router("/admin", &controllers.AdminController{}, "get:Edit")
 }
