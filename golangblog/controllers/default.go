@@ -3,6 +3,8 @@ package controllers
 import (
 	"golangblog/models"
 
+	"strconv"
+
 	"github.com/astaxie/beego/orm"
 )
 
@@ -47,4 +49,17 @@ func (c *MainController) About() {
 	orm.NewOrm().QueryTable("user").Filter("id", 1).One(&user)
 	c.Data["User"] = user
 	c.TplName = "about.html"
+}
+
+func (c *MainController) Detail() {
+	var article models.Article
+	var watch_desc_article []models.Article
+	id := c.Ctx.Input.Param(":id")
+	intid, _ := strconv.Atoi(id)
+	o := orm.NewOrm()
+	o.QueryTable("article").RelatedSel().Filter("id", intid).One(&article)
+	o.QueryTable("article").RelatedSel().OrderBy("-Watch_count").Limit(10).All(&watch_desc_article)
+	c.Data["Watch_desc_article"] = watch_desc_article
+	c.Data["Article"] = article
+	c.TplName = "detail.html"
 }

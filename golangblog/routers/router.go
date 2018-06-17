@@ -10,4 +10,5 @@ func init() {
 	beego.Router("/", &controllers.MainController{})
 	beego.Router("/time", &controllers.MainController{}, "get:Time")
 	beego.Router("/about", &controllers.MainController{}, "get:About")
+	beego.Router("/detail/:id", &controllers.MainController{}, "get:Detail")
 }

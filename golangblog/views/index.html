@@ -28,15 +28,15 @@
   <div class="blogsbox">
     {{range .Articles}}
     <div class="blogs" data-scroll-reveal="enter bottom over 1s" >
-      <h3 class="blogtitle"><a href="/" target="_blank">{{.Title}}</a></h3>
-      <span class="blogpic"><a href="/" title=""><img src="{{.View_img_url}}" alt=""></a></span>
+      <h3 class="blogtitle"><a href="/detail/{{.Id}}" target="_blank">{{.Title}}</a></h3>
+      <span class="blogpic"><a href="/detail/{{.Id}}" title=""><img src="{{.View_img_url}}" alt=""></a></span>
 		{{with $cont := substr .Content 0 200}}
 	    {{str2html $cont}}
 		{{end}}
       <div class="bloginfo">
         <ul>
-          <li class="author"><a href="/">{{.User.Username}}</a></li>
-          <li class="lmname"><a href="/">{{.Category.Name}}</a></li>
+          <li class="author">{{.User.Username}}</li>
+          <li class="lmname">{{.Category.Name}}</li>
           <li class="timer">{{.Time}}</li>
           <li class="view"><span>{{.Watch_count}}</span>已阅读</li>
           <li class="like">{{.Good_count}}</li>
@@ -52,7 +52,7 @@
 	  {{range .Watch_desc_article}}
       <ul class="tjpic">
         <i><img src="{{.View_img_url}}"></i>
-        <p><a href="/">{{.Title}}</a></p>
+        <p><a href="/detail/{{.Id}}">{{.Title}}</a></p>
       </ul>
 	  {{end}}
     </div>
@@ -66,9 +66,9 @@
     <div class="guanzhu" id="float">
       <h2 class="hometitle">关注我 么么哒！</h2>
       <ul>
-        <li class="qq"><a href="/" target="_blank"><span>QQ号</span>{{.User.Qq}}</a></li>
+        <!--<li class="qq"><a href="/" target="_blank"><span>QQ号</span>{{.User.Qq}}</a></li>
         <li class="email"><a href="/" target="_blank"><span>邮箱帐号</span>{{.User.Email}}</a></li>
-        <li class="wxgzh"><a href="/" target="_blank"><span>微信号</span>{{.User.Wx_number}}</a></li>
+        <li class="wxgzh"><a href="/" target="_blank"><span>微信号</span>{{.User.Wx_number}}</a></li>-->
         <li class="wx"><img src="{{.User.Wx_url}}"></li>
       </ul>
     </div>
