@@ -34,9 +34,28 @@ func (this *AdminController) List() {
 
 //添加文章
 func (this *AdminController) Add() {
+	if this.Ctx.Input.Method() == "GET" {
+		var categorys []models.Category
+		o := orm.NewOrm()
+		o.QueryTable("article_category").All(&categorys)
+		this.Data["Categorys"] = categorys
+		this.TplName = "admin_add_article.html"
+		return
+	}
+	this.TplName = "admin_add_article.html"
 
 }
 
 //文章详情
 
 //保存文章
+
+//图片上传
+func (this *AdminController) Upload() {
+	f, h, _ := this.GetFile("view_img_url")
+	path := "/home/wuchao/mygo/src/golangblog/static/upload/" + h.Filename
+	f.Close()
+	this.SaveToFile("view_img_url", path)
+	this.Data["json"] = map[string]interface{}{"state": "SUCCESS", "url": "/static/upload/" + h.Filename}
+	this.ServeJSON()
+}

@@ -1,0 +1,120 @@
+<script type="text/javascript" charset="utf-8" src="/static/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/static/js/ajaxfileupload.js"></script>
+<script type="text/javascript" charset="utf-8" src="/static/ueditor/ueditor.config.js"></script>
+ <script type="text/javascript" charset="utf-8" src="/static/ueditor/ueditor.all.min.js"> </script>
+	
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="/static/ueditor/lang/zh-cn/zh-cn.js"></script>
+<div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页1</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">作品管理</a><span class="crumb-step">&gt;</span><span>新增作品</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="/admin/add" method="post" id="myform" name="myform" enctype="multipart/form-data">
+				    <table class="insert-tab" width="100%">
+                        <tbody><tr>
+                            <th width="120"><i class="require-red">*</i>类别：</th>
+                            <td>
+                                <select name="category_id" id="category_id" class="required">
+                                    <option value="">请选择</option>
+									
+									{{range .Categorys}}
+                                    <option value="{{.Id}}">{{.Name}}</option>
+									{{end}}
+                                </select>
+                            </td>
+                        </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>标题：</th>
+                                <td>
+                                    <input class="common-text required" id="title" name="title" size="50" value="" type="text">
+                                </td>
+                            </tr>
+							
+							 <tr>
+                                <th><i class="require-red">*</i>子标题：</th>
+                                <td>
+                                    <input class="common-text required" id="sub_title" name="sub_title" size="50" value="" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>文章展示图：</th>
+                                <td><input name="view_img_url" id="view_img_url" type="file" onchange="ajaxFileUpload()"></td>
+                            </tr>
+							
+							<tr id="view_img_show" style="display:none">
+                                <th><i class="require-red">*</i>展示图浏览:</th>
+								<td id="view_img_show_td"></td>
+                            </tr>
+							<tr>
+							 <th width="120"><i class="require-red">*</i>首页核心展示：</th>
+                            <td>
+                                <select name="is_kern" id="is_kern" class="required">
+                                     <option value="0">否</option>
+                                    <option value="1">是</option>
+                                </select>
+                            </td>
+							 </tr>
+							<tr>
+							 <th width="120"><i class="require-red">*</i>是否推荐：</th>
+                            <td>
+                                <select name="is_recommend" id="is_recommend" class="required">
+                                    <option value="0">否</option>
+                                    <option value="1">是</option>
+                                </select>
+                            </td>
+							</tr>
+                           <tr>
+                                <th>内容：</th>
+   								 <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                    <input class="btn btn6" onClick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    
+                </form>
+            </div>
+        </div>
+
+</div>
+<div>
+<script type="text/javascript">
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+
+</script>
+<script type="text/javascript">
+	function ajaxFileUpload() {
+            $.ajaxFileUpload
+            (
+                {
+                    url: '/admin/upload', //用于文件上传的服务器端请求地址
+                    //secureuri: false, //是否需要安全协议，一般设置为false
+                    fileElementId: 'view_img_url', //文件上传域的ID
+                    //dataType: 'json', //返回值类型 一般设置为json
+                    success: function (data,status)  //服务器成功响应处理函数
+                    {
+						 var str = $(data).find("body").text();//获取返回的字符串
+        				var json = $.parseJSON(str);//把字符串转化为json对象
+						var url = json.url;　　
+						$('#view_img_show').show();
+                        $('#view_img_show_td').html('<img src="'+url+'" value="'+url+'" style="width:80%" >');
+                    },
+                    error: function (data)//服务器响应失败处理函数
+                    {
+                        alert('失败');
+                    }
+                }
+            )
+            return false;
+        }
+    </script>
