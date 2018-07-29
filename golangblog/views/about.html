@@ -1,0 +1,27 @@
+<div class="pagebg ab"> </div>
+<h1 class="t_nav"><span>像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。</span><a href="/" class="n1">网站首页</a><a href="#" class="n2">关于我</a></h1>
+  <div class="news_infos">
+    <ul>
+      <p>{{.User.Desc}}</p>
+      <br />
+      <h2>About my blog</h2>
+      &nbsp;
+      <p>感谢前端模板作者(杨青)：www.yangqq.com &nbsp;</p>
+      <br />
+      <p>后端程序：Golang</p>
+    </ul>
+  </div>
+  <div class="sidebar">
+    <div class="about">
+      <p class="avatar"> <img src="{{.User.Avatar}}" alt=""> </p>
+      <p class="abname">{{.User.Username}}</p>
+      <p class="abposition">{{.User.Title}}</p>
+      <p class="abtext"> {{.User.Intro}}</p>
+    </div>
+    <div class="weixin">
+      <h2 class="hometitle">微信关注</h2>
+      <ul>
+        <img src="{{.User.Wx_url}}">
+      </ul>
+    </div>
+  </div>

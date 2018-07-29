@@ -1,0 +1,67 @@
+GOLANG-BOLG
+一.数据表
+1.user
+id
+username
+password
+avatar
+title
+motto 座右铭
+intro 简介
+desc 详细介绍
+phone
+qq
+email
+wx_number
+wx_url
+wx_money_url
+alipay_money_url
+
+
+2.文章
+id
+uid
+category_id
+title
+sub_title
+watch_count
+comment_conut
+good_count 赞的数量
+is_recommend 是否推荐
+is_kern 是否首页核心展示
+view_img_url
+content
+time
+
+3.文章类别
+id
+name
+
+
+
+4.评论
+id
+article_id
+content
+
+5.首页大轮播图
+id
+title
+sub_title
+img_url
+href
+
+
+排期：
+
+2018-06-03
+数据表
+
+2018-06-04 
+数据库配置+orm的使用
+
+2018-06-05 
+template 的使用
+
+
+

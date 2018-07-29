@@ -1,0 +1,76 @@
+<article> 
+  <!--banner begin-->
+ <div class="picsbox"> 
+  <div class="banner">
+    <div id="ban" class="fader">
+	{{range .Brand}}  
+      <li class="slide" ><a href="/" target="_blank"><img src="{{.Img_url}}"><span class="imginfo">{{.Title}}</span></a></li>
+	{{end}}
+      <div class="fader_controls">
+        <div class="page prev" data-target="prev">&lsaquo;</div>
+        <div class="page next" data-target="next">&rsaquo;</div>
+        <ul class="pager_list">
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!--banner end-->
+  <div class="toppic">
+	{{range .Article_kerns}}
+    <li> <a href="/" target="_blank"> <i><img src="{{.View_img_url}}"></i>
+      <h2>{{.Title}}</h2>
+      <span>{{.Category.Name}}</span> </a> </li>
+	{{end}}
+  </div>
+  </div>
+  <div class="blank"></div>
+  <!--blogsbox begin-->
+  <div class="blogsbox">
+    {{range .Articles}}
+    <div class="blogs" data-scroll-reveal="enter bottom over 1s" >
+      <h3 class="blogtitle"><a href="/detail/{{.Id}}" target="_blank">{{.Title}}</a></h3>
+      <span class="blogpic"><a href="/detail/{{.Id}}" title=""><img src="{{.View_img_url}}" alt=""></a></span>
+		{{with $cont := substr .Content 0 200}}
+	    {{str2html $cont}}
+		{{end}}
+      <div class="bloginfo">
+        <ul>
+          <li class="author">{{.User.Username}}</li>
+          <li class="lmname">{{.Category.Name}}</li>
+          <li class="timer">{{.Time}}</li>
+          <li class="view"><span>{{.Watch_count}}</span>已阅读</li>
+          <li class="like">{{.Good_count}}</li>
+        </ul>
+      </div>
+    </div>
+	{{end}}
+  </div>
+  <!--blogsbox end-->
+  <div class="sidebar">
+    <div class="tuijian">
+      <h2 class="hometitle">点击排行</h2>
+	  {{range .Watch_desc_article}}
+      <ul class="tjpic">
+        <i><img src="{{.View_img_url}}"></i>
+        <p><a href="/detail/{{.Id}}">{{.Title}}</a></p>
+      </ul>
+	  {{end}}
+    </div>
+    <div class="links">
+      <h2 class="hometitle">友情链接</h2>
+      <ul>
+        <li><a href="http://www.yangqq.com" target="_blank">杨青博客</a></li>
+        <li><a href="http://www.ziroom.com" target="_blank">ziroom</a></li>
+      </ul>
+    </div>
+    <div class="guanzhu" id="float">
+      <h2 class="hometitle">关注我 么么哒！</h2>
+      <ul>
+        <!--<li class="qq"><a href="/" target="_blank"><span>QQ号</span>{{.User.Qq}}</a></li>
+        <li class="email"><a href="/" target="_blank"><span>邮箱帐号</span>{{.User.Email}}</a></li>
+        <li class="wxgzh"><a href="/" target="_blank"><span>微信号</span>{{.User.Wx_number}}</a></li>-->
+        <li class="wx"><img src="{{.User.Wx_url}}"></li>
+      </ul>
+    </div>
+  </div>
+</article>

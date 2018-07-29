@@ -1,0 +1,15 @@
+
+<div class="pagebg timer"> </div>
+<div class="container">
+  <h1 class="t_nav"><span>人生,贵在坚持!不逼自己一把,永远不知道自己有多优秀!</span><a href="/" class="n1">网站首页</a><a href="/time" class="n2">时间轴</a></h1>
+  <div class="timebox">
+  <ul id="list">
+	{{range .Articles}}
+    <li><span>{{.Time}}</span><a href="/jstt/web/2018-05-09/851.html" title="{{.Title}}">{{.Title}}</a></li>
+	{{end}}
+  </ul>
+  <ul id="list2">
+  </ul>
+  <script src="js/page2.js"></script> 
+  </div>
+</div>
